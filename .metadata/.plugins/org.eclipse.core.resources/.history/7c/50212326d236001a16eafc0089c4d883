@@ -1,0 +1,82 @@
+package sofka;
+
+import java.util.Scanner;
+
+public class Ejercicio2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int vectorBultos[] = new int[20];
+		
+		int limiteMaxBulto = 500;
+		int limiteCapacidadVuelo = 18000;
+		String ingresarBulto;
+		boolean bulto = true;
+		int pesoBulto = 0;
+		int precioBulto = 0;
+		int numeroDeBultos = 0;
+		
+		Scanner scannerChar = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
+		while(bulto) {
+			//charAt(0)
+			System.out.println("desea ingresar un bulto? s para si y n para no");
+			ingresarBulto = scannerChar.nextLine();
+			//System.out.println(ingresarBulto.charAt(0));
+			if(ingresarBulto.charAt(0) == 's') {
+				//contador de bultos
+				
+				
+				System.out.println("ingrese el peso del bulto");
+				pesoBulto = scanner.nextInt();
+				
+				
+				if(pesoBulto <= 500) {
+					precioBulto = valorKgBulto(pesoBulto);
+					vectorBultos[numeroDeBultos] = pesoBulto;
+					bultoPesadoLiviano(vectorBultos);
+				}else {
+					System.out.println("el bulto excede los 500kg");
+				}
+				numeroDeBultos += 1;
+				System.out.println("el precio del bulto es:" + precioBulto);
+				System.out.println("numero de bultos:" + numeroDeBultos);
+
+				
+			}else if(ingresarBulto.charAt(0) == 'n'){
+				System.out.println("termino su funcion");
+				break;
+			}else {
+				System.out.println("ingreso el caracter incorrecto");
+				break;
+			}
+
+		}
+		
+
+		
+	}
+	public static int valorKgBulto(int pesoBulto) {
+		int valorBultokg = 0;
+		int precioBulto = 0;
+		if(pesoBulto >= 0 && pesoBulto <=25) {
+			valorBultokg = 0;
+		}else if(pesoBulto >= 26 && pesoBulto <= 300) {
+			valorBultokg = 1500;
+		}else if(pesoBulto >=301 && pesoBulto <= 500) {
+			valorBultokg = 2500;
+		}
+		precioBulto = pesoBulto * valorBultokg;
+		return precioBulto;
+		
+	}
+	
+	public static void bultoPesadoLiviano(int vectorBultos[]) {
+		for (int i = 0; i < vectorBultos.length; i++) {
+			System.out.println("bulto "+ i + " ,peso del bulto :" + vectorBultos[i]);
+		}
+	}
+	
+	
+}

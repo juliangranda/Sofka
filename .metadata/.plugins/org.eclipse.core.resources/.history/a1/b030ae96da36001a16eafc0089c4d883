@@ -1,0 +1,143 @@
+package sofka;
+
+import java.util.Scanner;
+
+public class Ejercicio2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int vectorBultos[] = new int[20];
+		
+		int limiteMaxBulto = 500;
+		int limiteCapacidadVuelo = 18000;
+		String ingresarBulto;
+		boolean bulto = true;
+		int pesoBulto = 0;
+		int precioBulto = 0;
+		int numeroDeBultos = 0;
+		int pesoVuelo = 0;
+		
+		Scanner scannerChar = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
+		while(bulto) {
+			
+			System.out.println("desea ingresar un bulto? s para si y n para no");
+			ingresarBulto = scannerChar.nextLine();
+			//System.out.println(ingresarBulto.charAt(0));
+			if(ingresarBulto.charAt(0) == 's') {
+				
+				
+				
+				System.out.println("ingrese el peso del bulto");
+				pesoBulto = scanner.nextInt();
+				
+				
+				if(pesoBulto <= 500) {
+					pesoVuelo = pesoVuelo + pesoBulto;
+					if(pesoVuelo <= limiteCapacidadVuelo) {
+						//precioBulto = valorKgBulto(pesoBulto);
+						vectorBultos[numeroDeBultos] = pesoBulto;
+						
+					}
+					else {
+						System.out.println("el vuelo excedio su capacidad");
+						System.out.println("ingrese un bulto mas liviano o tenermine funcion");
+					}
+
+					
+				}else {
+					System.out.println("el bulto excede los 500kg");
+				}
+				numeroDeBultos += 1;
+				//System.out.println("el precio del bulto es:" + precioBulto);
+				//System.out.println("numero de bultos:" + numeroDeBultos);
+
+				
+			}else if(ingresarBulto.charAt(0) == 'n'){
+				System.out.println("termino su funcion");
+				break;
+			}else {
+				System.out.println("ingreso el caracter incorrecto");
+				break;
+			}
+
+		}
+		
+		bultoPesadoLiviano(vectorBultos);
+		ingresos(vectorBultos);
+
+		
+	}
+	public static int valorKgBulto(int pesoBulto) {
+		int valorBultokg = 0;
+		int precioBulto = 0;
+		if(pesoBulto >= 0 && pesoBulto <=25) {
+			valorBultokg = 0;
+		}else if(pesoBulto >= 26 && pesoBulto <= 300) {
+			valorBultokg = 1500;
+		}else if(pesoBulto >=301 && pesoBulto <= 500) {
+			valorBultokg = 2500;
+		}
+		precioBulto = pesoBulto * valorBultokg;
+		return precioBulto;
+		
+	}
+	
+	public static void bultoPesadoLiviano(int vectorBultos[]) {
+		int mayor = vectorBultos[0];
+		int menor = vectorBultos[0];
+		int promedio = 0;
+		int cantidadBultos = 0;
+		int pesoTotal = 0;
+		
+		for (int i = 1; i < vectorBultos.length; i++) {
+			//System.out.println("bulto "+ i + " ,peso del bulto :" + vectorBultos[i]);
+			
+			//mas pesado
+			if(vectorBultos[i] > mayor && vectorBultos[i] != 0) {
+				mayor = vectorBultos[i];
+			}
+			//mas liviano
+			if(menor > vectorBultos[i] && vectorBultos[i] != 0) {
+				menor = vectorBultos[i];
+			}
+			
+
+		}
+		for (int i = 0; i < vectorBultos.length; i++) {
+			//promedio
+			if(vectorBultos[i] != 0) {
+				cantidadBultos += 1;
+				pesoTotal = pesoTotal + vectorBultos[i];
+				
+			}
+		}
+		promedio = pesoTotal / cantidadBultos;
+
+		
+		System.out.println("el bulto mas pesado es:" + mayor);
+		System.out.println("el bulto mas liviano es:" + menor);
+		System.out.println("peso total"+ pesoTotal);
+		System.out.println("cantidad bultos:" + cantidadBultos);
+		System.out.println("el peso promedio de los " + cantidadBultos + " bultos " + "es de : " + promedio);
+	}
+	
+	public static void ingresos(int vectorBultos[] ) {
+		//precioBulto = valorKgBulto(pesoBulto);
+		int ingresos = 0;
+		
+		
+		for (int i = 0; i < vectorBultos.length; i++) {
+			ingresos = ingresos + valorKgBulto(vectorBultos[i]);
+			
+		}
+		
+		
+		System.out.println("ingresos en pesos: " + ingresos);
+		
+	}
+
+	
+	
+}

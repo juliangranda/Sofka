@@ -1,0 +1,42 @@
+package sofka;
+
+import java.util.Scanner;
+
+public class main {
+
+	
+
+	public static void main(String[] args) {
+		int numeroDias = 0;
+		int distanciaRecorrida = 0;
+		int pasaje = 0;
+		int descuento = 0;
+		int precioKilometro  = 35;
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("ingrese el numero de dias de su estancia: ");
+		numeroDias = scanner.nextInt();
+		System.out.println("ingrese la distancia a recorrer del avion");
+		distanciaRecorrida = scanner.nextInt();
+
+		
+		if(distanciaRecorrida > 1000 && numeroDias > 7) {
+			descuento = 30;
+		}
+		
+
+		int precioKm = (distanciaRecorrida * 35);
+		pasaje =  (descuento/100);
+		System.out.println();
+		
+		System.out.println("numero de dias:" + numeroDias);
+		System.out.println("distancia recorrida:" + distanciaRecorrida +"km");
+		System.out.println("descuento de la linea:" + descuento);
+		System.out.println("el costo del pasaje es:" + precioKilometro);
+		
+		
+		
+		
+	}
+
+}
